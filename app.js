@@ -221,8 +221,8 @@ console.log(funcionFlecha2(24));
 const frutas3 = ["apple", "peach", "pear", "grape"]
 frutas3.forEach( frutaa => console.log(frutaa))
 frutas3.forEach((frutaa, index) => console.log(`${index}: ${frutaa}`))
-frutas3.forEach((frutaa, index, array) => console.log(array))*/
-
+frutas3.forEach((frutaa, index, array) => console.log(array))
+    ////////////////////////////
 //Objetos
   const gato ={
       nombre: "chuyito",
@@ -239,6 +239,8 @@ frutas3.forEach((frutaa, index, array) => console.log(array))*/
             }
       }
   };
+
+  
   console.log(gato);
   console.log(gato.otrosDatos.amigos[0]);
   console.log(gato.nombre);
@@ -249,7 +251,77 @@ frutas3.forEach((frutaa, index, array) => console.log(array))*/
 
   console.log(gato)
 
-  //optional chaining with ? para verificar si existe
+  
+  //optional chaining with ? enables you to read the value of a property
+  // located deep within a chain of connected objects without having to check that each reference in the chain is valid.
   
   console.log(gato.otrosDatos1?.comida[0]);
 
+  const amigosGato = ["gatos", "pescados"]
+  amigosGato.push("pantera")
+  console.log(amigosGato)
+  //////////////////////////////////
+  // iterate through an object with for in,, for of is for arrays.
+  
+ // iterate through an object with for in
+  //metodo funcion dentro de un objeto
+
+  const perro = {
+      nombre: "chincho",
+      color: "negro",
+      edad: 5,
+      enemigos: ["gato", "humanos", "hot dogs"],
+      personalidad: function(){
+          console.log('enojon')
+      },
+      personalidades(a){
+          console.log('chistoso ' + a )
+          console.log(`${this.nombre} es un ${a}`)
+      },
+      //arrow function se pueden utilizar dentro de un metodo pero no como metodo.
+      personalidades2(){
+          this.enemigos.forEach((item) => console.log(item))
+        }
+    };
+
+      perro.personalidad(); 
+      perro.personalidades("perrito");
+      perro.personalidades2();
+        ///////////////////////
+      //destructuring
+    const nombre = "chido"
+      const leon ={
+          //nombre: "chango",
+          edad: 2,
+          color: "cafe"
+      }
+      console.log(leon)
+      const leon1 = leon.nombre;
+      // use of alias for reasign nombre
+     // const { nombre : leoncito, edad, color } = leon;
+      // en caso que no exista nombre se le asigna 
+      const { nombre : leoncito = "juanito", edad, color } = leon;
+      console.log(leoncito, edad, color)
+      console.log(leon1);
+      console.log(nombre)
+      ////////
+      */
+
+      const perico ={
+        nombre: "chuyito",
+        edad: 10,
+        vivo: true,
+        enemigos: ["perro", "leon", "niños", "agua"],
+        otrosDatos: {},
+    //getter no recibe parametros
+      get nombreMayuscula (){
+        return this.nombre.toUpperCase()
+    },
+    //setter must have one parameter
+        set agregarAmigo(newFriend){
+            this.enemigos.push(newFriend)
+        }
+    };
+        perico.agregarAmigo = "aguila"
+    console.log(perico.agregarAmigo)
+    console.log(perico)
