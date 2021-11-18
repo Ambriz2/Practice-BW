@@ -5,8 +5,8 @@ const botones = document.querySelectorAll(".card button");
 
 
 //console.log(carrito);
-//store fruits as an object
-const frutasEnCarrito ={};
+//store fruits as array
+const frutasEnCarrito =[];
 
 const agregarAlCarrito = (e) => {
     //console.log(e.target.dataset.fruit)
@@ -15,18 +15,23 @@ const agregarAlCarrito = (e) => {
         id: e.target.dataset.fruit,
         cantidad: 1,
     };
-    if (frutasEnCarrito.hasOwnProperty(producto.id)){
-        producto.cantidad = frutasEnCarrito[producto.id].cantidad + 1;
-    }
-    frutasEnCarrito[producto.id] = producto;
-    console.log(frutasEnCarrito)
-    pintarCarrito();
+    const indice = frutasEnCarrito.findIndex((item) => item.id === producto.id)
+    console.log(indice);
+
+    if(indice === -1){
+        frutasEnCarrito.push(producto)
+    } else {
+        frutasEnCarrito[indice].cantidad++
+    };
+
+    console.log(frutasEnCarrito);
+    //pintarCarrito();
 };
 
-const pintarCarrito = (producto) => {
+const pintarCarrito = (array) => {
     carrito.textContent = "";
 
-    Object.values(frutasEnCarrito).forEach((item) => {
+    array.forEach((item) => {
         const clone = template.content.cloneNode(true);
         clone.querySelector(".lead").textContent = item.titulo;
         clone.querySelector(".rounded-pill").textContent = item.cantidad;
@@ -36,3 +41,5 @@ const pintarCarrito = (producto) => {
 }
 console.log(pintarCarrito);
 botones.forEach((btn) => btn.addEventListener("click", agregarAlCarrito))
+
+
