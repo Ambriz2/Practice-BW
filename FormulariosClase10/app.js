@@ -14,8 +14,11 @@ const regUserEmail = /^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z
 const showSentMessage = () => {
     formSent.classList.remove('d-none');
     formSent.textContent = "Sent successfully"
- 
-    
+    setTimeout(deleteSentMessage, 4000)
+ }
+
+const deleteSentMessage = () => {
+    formSent.classList.add('d-none');
 }
 
 const showErrorMessage = (errors) => {
@@ -73,3 +76,21 @@ form.addEventListener('submit', e => {
     showSentMessage();
     
 });
+
+/* using formData.get() 
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    console.log("funciona");
+
+    const inputs = new FormData(formulario);
+    console.log(inputs.get("userName"));
+    console.log(inputs.get("userEmail"));
+
+    for (let campo of inputs.values()) {
+        console.log(campo);
+    }
+
+    for (let campo of inputs.entries()) {
+        console.log(campo);
+    }
+});*/
