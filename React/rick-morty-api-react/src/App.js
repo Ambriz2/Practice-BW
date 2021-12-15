@@ -1,11 +1,21 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ShowCharacters from "./components/ShowCharacters";
 import Forms from "./components/Forms"
 
 const App = () => {
     
-    const[name, setName] = useState('');
+    const [name, setName] = useState(() => {
+        const saved = localStorage.getItem("character");
+        const initialValue = JSON.parse(saved);
+        return initialValue || "";
+      });
+    
+
+    useEffect(() => {
+        localStorage.setItem("character", JSON.stringify(name));
+    },[name]);
+    
 
     return (
         <div className="container bg-light">
