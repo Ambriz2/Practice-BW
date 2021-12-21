@@ -1,7 +1,7 @@
 import { useFetch } from "../hooks/useFetch";
 import Loading from "../components/Loading";
 import { Link, useSearchParams } from "react-router-dom";
-import { useEffect } from "react/cjs/react.development";
+import { useEffect } from "react";
 
 
 const Blog = () => {
@@ -9,7 +9,7 @@ const Blog = () => {
     let [searchParams, setSearchParams] = useSearchParams();
 
     useEffect(() => {
-        console.log(searchParams.get('pepe'))
+       // console.log(searchParams.get('pepe'))
     }, [searchParams]);
 
     const { data, error, loading } = useFetch(
